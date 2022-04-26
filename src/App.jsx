@@ -8,12 +8,24 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import { logout } from "./redux/actions/auth"
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
   return (
     <StylesProvider injectFirst>
       <Router>
         {/* <Navbar /> */}
+        <Button
+          className="w-64 bg-CreateNewAccount normal-case py-2 mt-2 tracking-wider font-myFont px-8 text-base "
+          variant="contained"
+          color="primary"
+          type="submit"
+          onClick={() => dispatch(logout())}
+        >
+          logout
+        </Button>
         <Routes>
           {/* <Route exact path="/" element={<Home />}>
           </Route> */}

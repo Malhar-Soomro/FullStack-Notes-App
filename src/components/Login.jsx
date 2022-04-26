@@ -3,6 +3,8 @@ import { useFormik } from "formik"
 import { Button, Card, TextField, Typography } from '@material-ui/core';
 import * as yup from "yup"
 import { Link } from 'react-router-dom';
+import { login } from "../redux/actions/auth";
+import { useDispatch } from "react-redux";
 
 const schema = yup.object({
     email: yup.string().required("Email is required").email("invalid Email Address"),
@@ -11,7 +13,7 @@ const schema = yup.object({
 
 
 const Login = () => {
-
+    const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -21,6 +23,8 @@ const Login = () => {
         onSubmit: values => {
             console.log(values);
             // authenticate(values);
+            const { email, password } = values;
+            dispatch(login(email, password));
         }
     })
 

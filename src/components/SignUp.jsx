@@ -3,6 +3,8 @@ import { useFormik } from "formik"
 import { Button, Card, TextField, Typography } from '@material-ui/core';
 import * as yup from "yup"
 import { Link } from 'react-router-dom';
+import { signup } from "../redux/actions/auth"
+import { useDispatch } from "react-redux"
 
 
 const schema = yup.object({
@@ -14,6 +16,7 @@ const schema = yup.object({
 });
 
 const SignUp = () => {
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: {
@@ -26,6 +29,9 @@ const SignUp = () => {
         onSubmit: values => {
             console.log(values);
             // createUser(values)
+            const { email, password, name } = values;
+            dispatch(signup(name, email, password))
+
         }
     });
 
