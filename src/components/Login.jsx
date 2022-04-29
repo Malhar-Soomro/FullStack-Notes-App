@@ -5,6 +5,7 @@ import * as yup from "yup"
 import { Link } from 'react-router-dom';
 import { login } from "../redux/actions/auth";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"
 
 const schema = yup.object({
     email: yup.string().required("Email is required").email("invalid Email Address"),
@@ -14,6 +15,8 @@ const schema = yup.object({
 
 const Login = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -24,12 +27,12 @@ const Login = () => {
             console.log(values);
             // authenticate(values);
             const { email, password } = values;
-            dispatch(login(email, password));
+            dispatch(login(email, password, navigate));
         }
     })
 
     return (
-        <div className='flex justify-center '>
+        <div className='flex justify-center mt-16'>
             <Card
                 className="flex w-96 justify-center pt-8 pb-24 my-8 flex-col items-center  border-1 rounded-xl"
                 elevation={3}

@@ -5,6 +5,7 @@ import * as yup from "yup"
 import { Link } from 'react-router-dom';
 import { signup } from "../redux/actions/auth"
 import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 
 const schema = yup.object({
@@ -17,6 +18,7 @@ const schema = yup.object({
 
 const SignUp = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -30,13 +32,13 @@ const SignUp = () => {
             console.log(values);
             // createUser(values)
             const { email, password, name } = values;
-            dispatch(signup(name, email, password))
+            dispatch(signup(name, email, password, navigate))
 
         }
     });
 
     return (
-        <div className='flex justify-center '>
+        <div className='flex justify-center mt-16'>
             <Card
                 className="flex w-96 justify-center pt-8 pb-24 my-8 flex-col items-center  border-1 rounded-xl"
                 elevation={3}
