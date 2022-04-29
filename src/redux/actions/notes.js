@@ -26,11 +26,12 @@ export const createNote = (title, detail, category) => async (dispatch) => {
     dispatch({ type: CREATE_NOTE, payload: doc });
 }
 
-export const getPosts = () => async (dispatch) => {
-    const postCollectionRef = collection(db, "posts")
-    const data = await getDocs(postCollectionRef, "posts");
+export const getNotes = () => async (dispatch) => {
+    // const postCollectionRef = collection(db, "posts")
+    const data = await getDocs(postCollectionRef, "notes");
+    console.log(data)
+    data.docs.map((doc) => console.log(({ ...doc.data(), id: doc.id })))
     dispatch({ type: GET_NOTES, payload: data })
-
 }
 
 export const deletePost = (postId) => async (dispatch) => {

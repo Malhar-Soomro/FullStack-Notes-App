@@ -13,30 +13,16 @@ const useStyle = makeStyles((theme) => ({
         backgroundColor: orange[500],
     }
 }))
-const NoteCard = ({ id, title, category, detail, notes, setNotes }) => {
-
-    const notess = [{
-        "id": 1,
-        "title": "json-server222",
-        "category": "work",
-        "detail": "Get a full fake REST API with zero coding in less than 30 seconds (seriously)Created with <3 for front-end developers who need a quick back-end for prototyping and mocking"
-    },
-    {
-        "id": 2,
-        "title": "Withdraw money333",
-        "category": "reminder",
-        "detail": "Get a full fake REST API with zero  with <3 for front-end developers who need a quick back-end for prototyping and mocking"
-    }
-    ]
+const NoteCard = ({ id, title, category, detail, notes }) => {
 
 
     const deleteData = async (id) => {
-        await fetch(`http://localhost:5000/notes/${id}`, {
-            method: 'DELETE'
-        });
+        // await fetch(`http://localhost:5000/notes/${id}`, {
+        //     method: 'DELETE'
+        // });
 
-        const newNotes = notes.filter(note => note.id !== id);
-        setNotes(newNotes)
+        // const newNotes = notes.filter(note => note.id !== id);
+        // setNotes(newNotes)
 
     };
 
