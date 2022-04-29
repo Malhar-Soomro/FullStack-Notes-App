@@ -3,6 +3,9 @@ import { Button, Container, FormControl, FormControlLabel, FormLabel, Radio, Rad
 import { makeStyles } from '@material-ui/styles'
 import React, { useState } from 'react'
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { useDispatch } from "react-redux"
+import { createNote } from "../redux/actions/notes"
+
 const UseStyle = makeStyles({
     title: {
         marginTop: "10px",
@@ -23,6 +26,8 @@ const UseStyle = makeStyles({
 
 const createPage = () => {
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const dispatch = useDispatch();
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value, setValue] = useState(null);
     const handleChange = (event) => {
@@ -50,8 +55,10 @@ const createPage = () => {
             setDetailError(false);
         }
         if (title && detail) {
-            console.log(title, detail, value);
+            // console.log(title, detail, value);
             // dispatch createNote
+            dispatch(createNote(title, detail, value))
+
             setTitleError(false);
             setDetailError(false);
         }

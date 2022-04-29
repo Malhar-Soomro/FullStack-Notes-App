@@ -1,30 +1,35 @@
-import { db, auth } from "../../firebase-config"
+import { db, auth } from "../../firebase"
 import { addDoc, collection, getDocs, doc, deleteDoc } from "firebase/firestore"
 import { CREATE_NOTE, GET_NOTES, DELETE_NOTE } from "../constants/actionTypes"
 
 
-
-
 //specifying the collection in the db
-const postCollectionRef = collection(db, "posts")
+const postCollectionRef = collection(db, "notes")
 
-export const createPost = ({ title, postText }) => async (dispatch) => {
+export const createNote = (title, detail, category) => async (dispatch) => {
+    // console.log("auth.currentUser.displayName", auth.currentUser.displayName)
+    // console.log("auth.currentUser.uid", auth.currentUser.uid)
+
+    console.log("in createPost action")
+    console.log(title, detail, category)
+
     const doc = {
         title,
-        postText,
+        detail,
+        category,
         author: {
-            name: auth.currentUser.displayName,
+            // name: auth.currentUser.displayName
             id: auth.currentUser.uid
         }
     }
     await addDoc(postCollectionRef, doc);
-    // dispatch({ type: CREATE_POST, payload: doc });
+    dispatch({ type: CREATE_NOTE, payload: doc });
 }
 
 export const getPosts = () => async (dispatch) => {
-    // const postCollectionRef = collection(db, "posts")
+    const postCollectionRef = collection(db, "posts")
     const data = await getDocs(postCollectionRef, "posts");
-    // dispatch({ type: GET_POSTS, payload: data })
+    dispatch({ type: GET_NOTES, payload: data })
 
 }
 
