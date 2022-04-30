@@ -46,7 +46,11 @@ const useStyle = makeStyles(theme => ({
 
 
 const Home = ({ children }) => {
+    const user = JSON.parse(localStorage.getItem("data"))
 
+    const isDisabled = !user ? true : false;
+    console.log(user)
+    console.log(isDisabled)
     const navigate = useNavigate();
     const location = useLocation();
     const classes = useStyle();
@@ -84,6 +88,7 @@ const Home = ({ children }) => {
 
                         </ListItem>
                         <ListItem
+                            disabled={isDisabled}
                             button
                             onClick={() => navigate("/create")}
                             style={location.pathname === "/create" ? {
@@ -119,11 +124,11 @@ const Home = ({ children }) => {
                     </List>
                 </div>
 
-            </Drawer>
+            </Drawer >
             <div className={classes.page}>
                 {children}
             </div>
-        </div>
+        </div >
     )
 }
 
