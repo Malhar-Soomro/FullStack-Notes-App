@@ -10,7 +10,6 @@ const NotesPage = () => {
 
     const notes = useSelector((state) => state.notes);
 
-    console.log(notes)
     useEffect(() => {
         dispatch(getNotes())
     }, []);

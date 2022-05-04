@@ -8,8 +8,6 @@ import { Avatar, List, ListItem, ListItemIcon, ListItemText, Typography } from '
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 
-
-
 const drawerWidth = 240;
 const useStyle = makeStyles(theme => ({
     root: {
@@ -19,10 +17,6 @@ const useStyle = makeStyles(theme => ({
         backgroundColor: "#f4f4f4",
         width: "100%",
         marginTop: "60px"
-    },
-    appbar: {
-        backgroundColor: "#ffff",
-        width: `calc(100% - ${drawerWidth}px)`
     },
     drawer: {
         width: drawerWidth
@@ -41,16 +35,10 @@ const useStyle = makeStyles(theme => ({
     }
 }));
 
-
-
-
-
 const Home = ({ children }) => {
     const user = JSON.parse(localStorage.getItem("data"))
 
     const isDisabled = !user ? true : false;
-    console.log(user)
-    console.log(isDisabled)
     const navigate = useNavigate();
     const location = useLocation();
     const classes = useStyle();
@@ -103,24 +91,6 @@ const Home = ({ children }) => {
                             <ListItemText primary="Create Note" />
 
                         </ListItem>
-                        {/* {menuItems.map((item) => {
-                            return (
-                                <ListItem
-                                    button
-                                    onClick={() => history.push(item.path)}
-                                    style={
-                                        location.pathname === item.path ? {
-                                            backgroundColor: "#D3D3D3"
-                                        } : null
-                                    }
-                                >
-                                    <ListItemIcon>
-                                        {item.icon}
-                                    </ListItemIcon>
-                                    <ListItemText primary={item.text} />
-                                </ListItem>
-                            )
-                        })} */}
                     </List>
                 </div>
 

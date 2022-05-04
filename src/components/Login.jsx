@@ -1,6 +1,8 @@
 import React from 'react';
 import { useFormik } from "formik"
 import { Button, Card, TextField, Typography } from '@material-ui/core';
+
+
 import * as yup from "yup"
 import { Link } from 'react-router-dom';
 import { login } from "../redux/actions/auth";
@@ -24,7 +26,6 @@ const Login = () => {
         },
         validationSchema: schema,
         onSubmit: values => {
-            console.log(values);
             // authenticate(values);
             const { email, password } = values;
             dispatch(login(email, password, navigate));
@@ -32,9 +33,10 @@ const Login = () => {
     })
 
     return (
-        <div className='flex justify-center mt-16'>
+
+        <div className='flex justify-center'>
             <Card
-                className="flex w-96 justify-center pt-8 pb-24 my-8 flex-col items-center  border-1 rounded-xl"
+                className="flex w-96 justify-center pt-8 pb-24 my-8 flex-col items-center  border-1 rounded-xl mr-18"
                 elevation={3}
             >
                 <div>

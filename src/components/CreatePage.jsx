@@ -55,7 +55,6 @@ const createPage = () => {
             setDetailError(false);
         }
         if (title && detail) {
-            // console.log(title, detail, value);
             // dispatch createNote
             dispatch(createNote(title, detail, value))
 

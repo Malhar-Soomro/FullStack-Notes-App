@@ -4,12 +4,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Avatar, Button, Typography } from '@material-ui/core';
 import { format } from 'date-fns'
-import image from "../avatarImg.png"
 import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux"
 import { signout } from "../redux/actions/auth"
 import { useNavigate, useLocation } from "react-router-dom"
 import { auth } from "../firebase"
+
 
 const drawerWidth = 240;
 const useStyle = makeStyles(theme => ({
@@ -36,13 +36,11 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('data')));
+
     const navigate = useNavigate();
-    // console.log(user.providerData)
 
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem("data")));
-        console.log(auth.currentUser)
-
     }, [location]);
 
     const logout = () => {
@@ -71,14 +69,13 @@ const Navbar = () => {
                                     className="mr-4"
                                     variant="subtitle1"
                                 >
-                                    {user.displayName}
+                                    {user.firstName + " " + user.lastName}
                                 </Typography>
 
                                 <Avatar
                                     className={classes.avatar}
                                     alt="MS"
-                                    src={image}
-                                >MS
+                                >{user.initials}
                                 </Avatar>
                                 <Button
                                     variant="contained"
@@ -93,7 +90,10 @@ const Navbar = () => {
                                 component={Link}
                                 to="/login"
                                 variant="contained"
-                                color="primary">
+                                color="primary"
+                            // onClick={() => navigate("login")}
+                            >
+
                                 Sign in
                             </Button>
                         )

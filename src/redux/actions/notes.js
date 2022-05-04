@@ -7,18 +7,12 @@ import { CREATE_NOTE, GET_NOTES, DELETE_NOTE } from "../constants/actionTypes"
 const postCollectionRef = collection(db, "notes")
 
 export const createNote = (title, detail, category) => async (dispatch) => {
-    // console.log("auth.currentUser.displayName", auth.currentUser.displayName)
-    // console.log("auth.currentUser.uid", auth.currentUser.uid)
-
-    console.log("in createPost action")
-    console.log(title, detail, category)
 
     const doc = {
         title,
         detail,
         category,
         author: {
-            // name: auth.currentUser.displayName
             id: auth.currentUser.uid
         }
     }
@@ -27,10 +21,7 @@ export const createNote = (title, detail, category) => async (dispatch) => {
 }
 
 export const getNotes = () => async (dispatch) => {
-    // const postCollectionRef = collection(db, "posts")
     const data = await getDocs(postCollectionRef, "notes");
-    console.log(data)
-    data.docs.map((doc) => console.log(({ ...doc.data(), id: doc.id })))
     dispatch({ type: GET_NOTES, payload: data })
 }
 

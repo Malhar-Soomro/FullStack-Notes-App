@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom"
 
 
 const schema = yup.object({
-    name: yup.string("Name must be in string").required("Name is required").min(3, "Name must be 3 characters long"),
+    firstName: yup.string("First Name must be in string").required("First Name is required").min(3, "First Name must be 3 characters long"),
+    lastName: yup.string("Last Name must be in string").required("Last Name is required").min(3, "Last Name must be 3 characters long"),
     email: yup.string().required("Email is required").email("invalid Email Address"),
     password: yup.string().required("Password is required").min(8, "Password should be at least 8 characters long"),
     confirmPassword: yup.string()
@@ -22,23 +23,23 @@ const SignUp = () => {
 
     const formik = useFormik({
         initialValues: {
-            name: "",
+            firstName: "",
+            lastName: "",
             email: "",
             password: "",
             confirmPassword: ""
         },
         validationSchema: schema,
         onSubmit: values => {
-            console.log(values);
-            // createUser(values)
-            const { email, password, name } = values;
-            dispatch(signup(name, email, password, navigate))
+            console.log(values)
+            const { email, password, firstName, lastName } = values;
+            dispatch(signup(firstName, lastName, email, password, navigate))
 
         }
     });
 
     return (
-        <div className='flex justify-center mt-16'>
+        <div className='flex justify-center'>
             <Card
                 className="flex w-96 justify-center pt-8 pb-24 my-8 flex-col items-center  border-1 rounded-xl"
                 elevation={3}
@@ -58,15 +59,29 @@ const SignUp = () => {
                         size="small"
                         className="mt-4 w-64"
                         onChange={formik.handleChange}
-                        value={formik.values.name}
-                        id="name"
-                        label="Name"
+                        value={formik.values.firstName}
+                        id="firstName"
+                        label="First Name"
                         variant="outlined"
                         type="text"
                         onBlur={formik.handleBlur}
-                        name='name'
-                        error={formik.touched.name && formik.errors.name}
-                        helperText={formik.touched.name && formik.errors.name}
+                        firstName='firstName'
+                        error={formik.touched.firstName && formik.errors.firstName}
+                        helperText={formik.touched.firstName && formik.errors.firstName}
+                    />
+                    <TextField
+                        size="small"
+                        className="w-64"
+                        onChange={formik.handleChange}
+                        value={formik.values.lastName}
+                        id="lastName"
+                        label="Last Name"
+                        variant="outlined"
+                        type="text"
+                        onBlur={formik.handleBlur}
+                        lastName='lastName'
+                        error={formik.touched.lastName && formik.errors.lastName}
+                        helperText={formik.touched.lastName && formik.errors.lastName}
                     />
 
                     <TextField
