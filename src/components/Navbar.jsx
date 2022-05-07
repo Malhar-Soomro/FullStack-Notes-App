@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux"
 import { signout } from "../redux/actions/auth"
 import { useNavigate, useLocation } from "react-router-dom"
 import { auth } from "../firebase"
+import { getNotes } from "../redux/actions/notes"
+
 
 
 const drawerWidth = 240;
@@ -91,7 +93,7 @@ const Navbar = () => {
                                 to="/login"
                                 variant="contained"
                                 color="primary"
-                            // onClick={() => navigate("login")}
+                            // onClick={() => navigate("/login")}
                             >
 
                                 Sign in
