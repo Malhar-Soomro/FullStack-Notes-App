@@ -18,12 +18,11 @@ import CreatePage from "./components/CreatePage"
 
 function App() {
   const user = JSON.parse(localStorage.getItem('data'));
+  console.log(user);
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(getNotes())
+    dispatch(getNotes());
   })
-
 
   return (
     <StylesProvider injectFirst>

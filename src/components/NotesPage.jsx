@@ -11,11 +11,19 @@ const NotesPage = () => {
     const user = JSON.parse(localStorage.getItem("data"))
     const notes = useSelector((state) => state.notes);
     const location = useLocation();
+    console.log(notes, user, auth)
 
 
     useEffect(() => {
+        console.log("useEffect")
         dispatch(getNotes())
-    }, [location, dispatch]);
+    }, []);
+
+
+    // useEffect(() => {
+    //     dispatch(getNotes())
+    // }, [location, dispatch]);
+
 
     return (
         <Container>

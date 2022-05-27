@@ -7,8 +7,8 @@ const authReducer = (state = null, action) => {
             return state;
         case GET_NOTES:
             return action.payload.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        case NO_NOTES:
-            return null;
+        // case NO_NOTES:
+        //     return null;
         default:
             return state;
     }

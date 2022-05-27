@@ -1,6 +1,6 @@
 import { db, auth } from "../../firebase"
 import { addDoc, collection, getDocs, doc, deleteDoc, query, where } from "firebase/firestore"
-import { CREATE_NOTE, GET_NOTES, DELETE_NOTE, NO_NOTES } from "../constants/actionTypes"
+import { CREATE_NOTE, GET_NOTES, DELETE_NOTE } from "../constants/actionTypes"
 
 
 //specifying the collection in the db
@@ -19,7 +19,12 @@ export const createNote = (title, detail, category) => async (dispatch) => {
 }
 
 export const getNotes = () => async (dispatch) => {
-    const q = query(postCollectionRef, where("authorId", "==", auth.currentUser?.uid));
+    // console.log(postCollectionRef, auth.currentUser?.uid)
+
+    const uid = JSON.parse(localStorage.getItem('data'))?.uid;
+    console.log(uid)
+
+    const q = query(postCollectionRef, where("authorId", "==", uid));
     const querySnapshot = await getDocs(q);
     dispatch({ type: GET_NOTES, payload: querySnapshot })
 }

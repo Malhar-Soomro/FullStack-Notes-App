@@ -15,9 +15,12 @@ export const signup = (firstName, lastName, email, password, navigate) => async 
         await setDoc(doc(db, "users", response.user.uid), {
             firstName,
             lastName,
-            initials: firstName[0] + lastName[0]
+            initials: firstName[0] + lastName[0],
+            uid: response.user.uid
         });
-        dispatch({ type: AUTH, payload: { firstName, lastName, initials: `${firstName[0]}${lastName[0]}` } });
+        // console.log(response.user.uid)
+        // console.log(auth.currentUser.uid)
+        dispatch({ type: AUTH, payload: { firstName, lastName, initials: `${firstName[0]}${lastName[0]}`, uid: response.user.uid } });
         navigate("/")
     }
     catch (error) {
