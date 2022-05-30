@@ -1,5 +1,4 @@
-import { CREATE_NOTE, GET_NOTES, DELETE_NOTE, NO_NOTES } from "../constants/actionTypes";
-
+import { CREATE_NOTE, GET_NOTES, DELETE_NOTE } from "../constants/actionTypes";
 
 const authReducer = (state = null, action) => {
     switch (action.type) {
@@ -7,13 +6,11 @@ const authReducer = (state = null, action) => {
             return state;
         case GET_NOTES:
             return action.payload.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        // case NO_NOTES:
-        //     return null;
+        case DELETE_NOTE:
+            return state.filter((note) => note.id !== action.payload);
         default:
             return state;
     }
 }
 
 export default authReducer;
-
-

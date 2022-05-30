@@ -1,6 +1,7 @@
 import { db, auth } from "../../firebase"
 import { addDoc, collection, getDocs, doc, deleteDoc, query, where } from "firebase/firestore"
 import { CREATE_NOTE, GET_NOTES, DELETE_NOTE } from "../constants/actionTypes"
+import { useSelector } from "react-redux"
 
 
 //specifying the collection in the db
@@ -29,9 +30,18 @@ export const getNotes = () => async (dispatch) => {
     dispatch({ type: GET_NOTES, payload: querySnapshot })
 }
 
-export const deletePost = (postId) => async (dispatch) => {
-    console.log("deleting the post", postId)
-    const post = doc(db, "posts", postId);
-    await deleteDoc(post);
+export const deleteNote = (noteId) => async (dispatch) => {
+    console.log("deleting the notes", noteId)
+    const note = doc(db, "notes", noteId);
+    await deleteDoc(note);
+    dispatch({ type: DELETE_NOTE, payload: noteId })
+
+    //     const docRef = doc(db, 'books', deleteBookForm.id.value)
+
+    // deleteDoc(docRef)
+    //     .then(() => {
+    //         deleteBookForm.reset()
+    //     });
+
     // dispatch({ type: DELETE_POST, payload: postId });
 }

@@ -41,7 +41,7 @@ const SignUp = () => {
     return (
         <div className='flex justify-center'>
             <Card
-                className="flex w-96 justify-center pt-8 pb-24 my-8 flex-col items-center  border-1 rounded-xl"
+                className="flex w-96 justify-center pt-8 pb-24 my-8 flex-col items-center  border-1 rounded-xl mr-40"
                 elevation={3}
             >
                 <div>

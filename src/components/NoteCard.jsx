@@ -2,6 +2,8 @@ import { Avatar, Card, CardContent, CardHeader, IconButton, makeStyles, Typograp
 import { orange } from '@material-ui/core/colors';
 import { DeleteOutlineOutlined, NoteSharp } from '@material-ui/icons';
 import React, { useEffect } from 'react'
+import { deleteNote } from "../redux/actions/notes";
+import { useDispatch } from "react-redux";
 
 const useStyle = makeStyles((theme) => ({
     card: {
@@ -12,9 +14,11 @@ const useStyle = makeStyles((theme) => ({
     avatar: {
         backgroundColor: orange[500],
     }
-}))
+}));
+
 const NoteCard = ({ id, title, category, detail, notes }) => {
 
+    const dispatch = useDispatch();
 
     const deleteData = async (id) => {
         // await fetch(`http://localhost:5000/notes/${id}`, {
@@ -23,10 +27,8 @@ const NoteCard = ({ id, title, category, detail, notes }) => {
 
         // const newNotes = notes.filter(note => note.id !== id);
         // setNotes(newNotes)
-
+        console.log(id)
     };
-
-
 
     const classes = useStyle();
     return (
@@ -43,7 +45,7 @@ const NoteCard = ({ id, title, category, detail, notes }) => {
                     </Avatar>
                 }
                 action={
-                    <IconButton onClick={() => deleteData(id)
+                    <IconButton onClick={() => dispatch(deleteNote(id))
                     }>
                         <DeleteOutlineOutlined />
                     </IconButton>
