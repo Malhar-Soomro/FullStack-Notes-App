@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './index.css';
 import { StylesProvider } from '@material-ui/core/styles';
 import SignUp from "./components/SignUp";
@@ -7,6 +7,7 @@ import Home from "./components/Home"
 import Navbar from "./components/Navbar"
 import { getNotes } from './redux/actions/notes';
 import { useDispatch } from "react-redux";
+
 
 import {
   BrowserRouter as Router,
@@ -17,7 +18,7 @@ import NotesPage from "./components/NotesPage"
 import CreatePage from "./components/CreatePage"
 
 function App() {
-  const user = JSON.parse(localStorage.getItem('data'));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('data')));
   console.log(user);
   const dispatch = useDispatch();
   useEffect(() => {
