@@ -61,8 +61,8 @@ const Home = ({ children }) => {
                     <List>
                         <ListItem
                             button
-                            onClick={() => navigate("/")}
-                            style={location.pathname === "/" ? {
+                            onClick={() => navigate("/notes")}
+                            style={location.pathname === "/notes" ? {
                                 backgroundColor: "#D3D3D3"
                             } : null
                             }

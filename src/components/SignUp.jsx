@@ -31,7 +31,6 @@ const SignUp = () => {
         },
         validationSchema: schema,
         onSubmit: values => {
-            console.log(values)
             const { email, password, firstName, lastName } = values;
             dispatch(signup(firstName, lastName, email, password, navigate))
 

@@ -48,6 +48,7 @@ const Navbar = () => {
     const logout = () => {
         dispatch(signout(navigate))
         setUser(null)
+
     }
 
     return (
@@ -93,7 +94,6 @@ const Navbar = () => {
                                 to="/login"
                                 variant="contained"
                                 color="primary"
-                            // onClick={() => navigate("/login")}
                             >
 
                                 Sign in

@@ -19,7 +19,6 @@ import CreatePage from "./components/CreatePage"
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('data')));
-  console.log(user);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNotes());
@@ -31,7 +30,9 @@ function App() {
         <Navbar />
         <Home>
           <Routes>
-            <Route exact path="/" element={<NotesPage />} />
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/notes" element={<NotesPage />} />
+
             <Route exact path="/create" element={<CreatePage />} />
             <Route exact path="/login" element={!user ? <Login /> : <NotesPage />} />
             <Route exact path="/signUp" element={!user ? <SignUp /> : <NotesPage />} />

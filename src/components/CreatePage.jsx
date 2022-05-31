@@ -60,6 +60,8 @@ const createPage = () => {
 
             setTitleError(false);
             setDetailError(false);
+            setTitle("")
+            setDetail("")
         }
         if (title === "" && detail === "") {
             setTitleError(true);

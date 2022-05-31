@@ -17,25 +17,12 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const NoteCard = ({ id, title, category, detail, notes }) => {
-
     const dispatch = useDispatch();
-
-    const deleteData = async (id) => {
-        // await fetch(`http://localhost:5000/notes/${id}`, {
-        //     method: 'DELETE'
-        // });
-
-        // const newNotes = notes.filter(note => note.id !== id);
-        // setNotes(newNotes)
-        console.log(id)
-    };
-
     const classes = useStyle();
-    return (
 
+    return (
         <Card
             className={classes.card}
-        // elevation={1}
         >
             <CardHeader
                 avatar={
