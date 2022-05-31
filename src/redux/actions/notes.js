@@ -1,6 +1,8 @@
 import { db, auth } from "../../firebase"
 import { addDoc, collection, getDocs, doc, deleteDoc, query, where } from "firebase/firestore"
-import { CREATE_NOTE, GET_NOTES, DELETE_NOTE } from "../constants/actionTypes"
+import { CREATE_NOTE, GET_NOTES, DELETE_NOTE } from "../constants/actionTypes";
+import Swal from 'sweetalert2'
+
 
 //specifying the collection in the db
 const postCollectionRef = collection(db, "notes")
@@ -14,6 +16,13 @@ export const createNote = (title, detail, category) => async (dispatch) => {
     }
     await addDoc(postCollectionRef, doc);
     dispatch({ type: CREATE_NOTE, payload: doc });
+    Swal.fire({
+        icon: "success",
+        title: "Note has been created successfully!",
+        showConfirmButton: false,
+        timer: 1500
+    });
+
 }
 
 export const getNotes = () => async (dispatch) => {
@@ -28,4 +37,10 @@ export const deleteNote = (noteId) => async (dispatch) => {
     const note = doc(db, "notes", noteId);
     await deleteDoc(note);
     dispatch({ type: DELETE_NOTE, payload: noteId });
+    Swal.fire({
+        icon: "success",
+        title: "Note has been deleted successfully!",
+        showConfirmButton: false,
+        timer: 1500
+    });
 }
